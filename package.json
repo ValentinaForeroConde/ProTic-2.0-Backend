@@ -5,14 +5,14 @@
   "repository": "https://github.com/ValentinaForeroConde/ProTic-2.0-Backend.git",
   "author": "Valentina Forero <valeforero98@gmail.com>",
   "license": "MIT",
-  "type": "module",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "ts-node index.ts"
   },
-
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^6.0.12",
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.14",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
   }
 }
