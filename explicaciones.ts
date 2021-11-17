@@ -11,14 +11,14 @@ const main = async () =>{
     //     descripcion: 'este es un objetivo especifico',
     //     tipo: Enum_TipoObjetivo.especifico,
     // })
-    ProjectModel.create({
-        nombre: "Proyecto 3",
-        presupuesto: 120,
-        fechaInicio: Date.now(),
-        fechaFin: new Date("2022/11/10"),
-        lider: '618c48f87da55ad985c0b86a',
-        objetivos:['618d86a4f489e3c24547be7f','618d86fa3a979f76508dfdb0']
-    })
+    // ProjectModel.create({
+    //     nombre: "Proyecto 3",
+    //     presupuesto: 120,
+    //     fechaInicio: Date.now(),
+    //     fechaFin: new Date("2022/11/10"),
+    //     lider: '618c48f87da55ad985c0b86a',
+    //     objetivos:['618d86a4f489e3c24547be7f','618d86fa3a979f76508dfdb0']
+    // })
 
     // const proyecto = await projectModel.find({nombre: 'Proyecto 2'}).populate('lider');
     // console.log('el proyecto es: ', proyecto);

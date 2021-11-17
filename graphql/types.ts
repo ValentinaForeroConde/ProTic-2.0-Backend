@@ -39,24 +39,29 @@ type Usuario{
     rol: Enum_Rol!
 }
 
+type Objetivo{
+    _id: ID!
+    descripcion: String!
+    tipo: Enum_TipoObjetivo!
+}
+
 type Proyecto{
     _id: ID!
     nombre: String!
-    presopuesto: float!
+    presupuesto: Float!
     fechaInicio: Date!
     fechaFin: Date!
     estado: Enum_EstadoProyecto!
     fase: Enum_FaseProyecto!
     lider: Usuario!
-    objetivo:[
-        {descripcion: String!, tipo:Enum_TipoObjetivo}
-    ]
+    objetivo:[ Objetivo ]
 }
 
 type Query{
     Usuarios: [Usuario]
     Usuario(_id: String!): Usuario
     Proyectos: [Proyecto]
+    Proyecto(_id: String!): Proyecto
 }
 type Mutation{
     crearUsuarios(
@@ -80,6 +85,15 @@ type Mutation{
 
     eliminarUsuario( _id: String! ): Usuario
     
+    crearProyecto(
+        nombre: String!
+        presupuesto: Float!
+        fechaInicio: Date!
+        fechaFin: Date!
+        estado: Enum_EstadoProyecto!
+        fase: Enum_FaseProyecto!
+        lider: String!
+    ):Proyecto
 }
 `;
 

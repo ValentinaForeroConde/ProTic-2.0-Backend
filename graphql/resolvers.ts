@@ -1,5 +1,6 @@
 import { UserModel } from "../models/user";
 import {ProjectModel } from "../models/project"
+
 const resolvers = {
     Query:{
         Usuarios: async (parent, args)=>{
@@ -11,9 +12,14 @@ const resolvers = {
             return usuario;
         },
         Proyectos: async(parent, args)=>{
-            const proyectos = await ProjectModel.find();
+            const proyectos = await ProjectModel.find().populate('lider');
             return proyectos;
+        },
+        Proyecto: async(parent, args)=>{
+            const proyecto = await (await ProjectModel.findOne({_id:args._id})).populate('lider');
+            return proyecto;
         }
+        
     },
     Mutation:{
         crearUsuarios: async (parent, args)=>{
@@ -51,6 +57,20 @@ const resolvers = {
                 const usuarioEliminado = await UserModel.findOneAndDelete({correo: args.correo})
                 return usuarioEliminado;
             }
+        },
+
+        crearProyecto: async (parent, args)=>{
+            const proyectoCreado = await ProjectModel.create({
+                nombre: args.nombre,
+                presupuesto: args.presupuesto,
+                fechaInicio: args.fechaInicio,
+                fechaFin: args.fechaFin,
+                estado: args.estado,
+                fase: args.fase,
+                lider: args.lider,
+                objetivo: [{descripcion: "descripcion de los objetivos", tipo:'GENERAL'}]
+            });
+            return proyectoCreado;
         }
     }
 }
