@@ -45,6 +45,11 @@ type Objetivo{
     tipo: Enum_TipoObjetivo!
 }
 
+input crearObjetivo{
+    descripcion: String!
+    tipo: Enum_TipoObjetivo!
+}
+
 type Proyecto{
     _id: ID!
     nombre: String!
@@ -54,7 +59,7 @@ type Proyecto{
     estado: Enum_EstadoProyecto!
     fase: Enum_FaseProyecto!
     lider: Usuario!
-    objetivo:[ Objetivo ]
+    objetivos:[ Objetivo ]
 }
 
 type Query{
@@ -93,6 +98,7 @@ type Mutation{
         estado: Enum_EstadoProyecto!
         fase: Enum_FaseProyecto!
         lider: String!
+        objetivos: [crearObjetivo]
     ):Proyecto
 }
 `;

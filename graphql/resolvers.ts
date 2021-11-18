@@ -68,7 +68,7 @@ const resolvers = {
                 estado: args.estado,
                 fase: args.fase,
                 lider: args.lider,
-                objetivo: [{descripcion: "descripcion de los objetivos", tipo:'GENERAL'}]
+                objetivos: args.objetivos,
             });
             return proyectoCreado;
         }
