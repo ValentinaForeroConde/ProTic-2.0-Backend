@@ -26,4 +26,10 @@ enum Enum_TipoObjetivo{
     GENERAL = 'GENERAL',
     ESPECIFICO = 'ESPECIFICO',
 };
-export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo};
+
+enum Enum_EstadoInscripcion{
+    ACEPTADA='ACEPTADA',
+    RECHAZADA='RECHAZADA'
+};
+
+export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo, Enum_EstadoInscripcion};
