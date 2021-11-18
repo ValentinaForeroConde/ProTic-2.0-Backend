@@ -59,7 +59,7 @@ type Proyecto{
     estado: Enum_EstadoProyecto!
     fase: Enum_FaseProyecto!
     lider: Usuario!
-    objetivos:[ Objetivo ]
+    objetivos:[ Objetivo ]!
 }
 
 type Query{
@@ -98,7 +98,7 @@ type Mutation{
         estado: Enum_EstadoProyecto!
         fase: Enum_FaseProyecto!
         lider: String!
-        objetivos: [crearObjetivo]
+        objetivos: [crearObjetivo]!
     ):Proyecto
 }
 `;
