@@ -1,4 +1,4 @@
-import { InscripcionModel } from "../inscripciones/inscripcion";
+import { InscripcionModel } from "./inscripcion.js";
 
 const resolversInscripcion = {
     Query:{
@@ -33,6 +33,13 @@ const resolversInscripcion = {
                 estudiante: args.estudiante,
             });
             return inscripcionEditada;
+        },
+        aprobarInscripcion: async(parent,args)=>{
+            const inscripcionAprobada = await InscripcionModel.findByIdAndUpdate(args._id,{
+                estado: "ACEPTADO",
+                fechaIngreso: Date.now(),
+            });
+            return inscripcionAprobada;
         },
         eliminarInscripcion: async(parent,args)=>{
             const inscripcionEliminada = await InscripcionModel.findByIdAndDelete({_id: args._id});

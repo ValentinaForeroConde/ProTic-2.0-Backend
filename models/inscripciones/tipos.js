@@ -34,7 +34,9 @@ type Mutation{
         estado: String!
         estudiante: String!
     ):Inscripcion
-
+    
+    aprobarInscripcion( _id: String! ): Inscripcion
+    
     eliminarInscripcion( _id: String! ): Inscripcion
 }
 `;

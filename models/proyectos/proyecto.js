@@ -1,19 +1,8 @@
-import {Schema, model} from 'mongoose';
-import { Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo } from '../enums/enums';
-import { UserModel } from '../usuarios/usuario';
+import mongoose from 'mongoose';
+import { UserModel } from '../usuarios/usuario.js';
 
-interface Proyecto{
-    nombre: string,
-    presupuesto: number,
-    fechaInicio: Date,
-    fechaFin: Date,
-    estado: Enum_EstadoProyecto,
-    fase: Enum_FaseProyecto,
-    lider: Schema.Types.ObjectId,
-    objetivos:[{ descripcion: String; tipo: Enum_TipoObjetivo }];
-}
-
-const projectSchema = new Schema<Proyecto>({
+const {Schema, model} = mongoose;
+const projectSchema = new Schema({
     nombre: {
         type:String,
         requiered: true,
@@ -32,13 +21,13 @@ const projectSchema = new Schema<Proyecto>({
     },
     estado: {
         type:String,
-        enum: Enum_EstadoProyecto, 
-        default: Enum_EstadoProyecto.INACTIVO,
+        enum: ["ACTIVO","INACTIVO"], 
+        default: "INACTIVO",
     },
     fase: {
         type:String,
-        enum: Enum_FaseProyecto,
-        default: Enum_FaseProyecto.NULA,
+        enum: ["INICIADO","DESARROLLO","TERMINADO","NULO"],
+        default: "NULO",
     },
     lider: {
         type: Schema.Types.ObjectId,
@@ -53,13 +42,30 @@ const projectSchema = new Schema<Proyecto>({
           },
           tipo: {
             type: String,
-            enum: Enum_TipoObjetivo,
+            enum: ["GENERAL","ESPECIFICO"],
             required: true,
           },
         },
       ],
 });
-
+projectSchema.virtual("avances",{
+    ref:'Avance',
+    localField:"_id",
+    foreignField: "proyecto",
+},
+{
+    toJSON: {virtuals:true},
+    toObject: {virtuals:true}
+})
+projectSchema.virtual("inscripciones",{
+    ref:'Inscripcione',
+    localField:"_id",
+    foreignField: "proyecto",
+},
+{
+    toJSON: {virtuals:true},
+    toObject: {virtuals:true}
+})
 const ProjectModel = model("Proyecto", projectSchema);
 
 export { ProjectModel };
