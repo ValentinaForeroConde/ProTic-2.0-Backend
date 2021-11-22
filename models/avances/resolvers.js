@@ -32,7 +32,7 @@ const resolversAvance = {
                 descripcion: args.descripcion,
                 observaciones: args.observaciones,
                 creadoPor: args.creadoPor,
-            });
+            },{new: true});
             return avanceEditado;
         },
         eliminarAvance: async(parent,args)=>{

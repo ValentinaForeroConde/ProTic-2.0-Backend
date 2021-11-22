@@ -31,14 +31,14 @@ const resolversInscripcion = {
                 fechaEgreso: args.fechaEgreso,
                 estado: args.estado,
                 estudiante: args.estudiante,
-            });
+            },{new: true});
             return inscripcionEditada;
         },
         aprobarInscripcion: async(parent,args)=>{
             const inscripcionAprobada = await InscripcionModel.findByIdAndUpdate(args._id,{
                 estado: "ACEPTADO",
                 fechaIngreso: Date.now(),
-            });
+            },{new: true});
             return inscripcionAprobada;
         },
         eliminarInscripcion: async(parent,args)=>{
