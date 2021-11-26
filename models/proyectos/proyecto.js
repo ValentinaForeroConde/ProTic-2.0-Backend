@@ -21,7 +21,7 @@ const projectSchema = new Schema({
     },
     estado: {
         type:String,
-        enum: ["ACTIVO","INACTIVO"], 
+        enum: ["ACTIVO","INACTIVO"],
         default: "INACTIVO",
     },
     fase: {

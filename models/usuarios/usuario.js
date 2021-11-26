@@ -36,5 +36,24 @@ const userSchema = new Schema({
     }
 });
 
+userSchema.virtual("avances",{
+    ref:'Avance',
+    localField:"_id",
+    foreignField: "usuario",
+},
+{
+    toJSON: {virtuals:true},
+    toObject: {virtuals:true}
+})
+userSchema.virtual("inscripciones",{
+    ref:'Inscripcione',
+    localField:"_id",
+    foreignField: "usuario",
+},
+{
+    toJSON: {virtuals:true},
+    toObject: {virtuals:true}
+})
+
 const UserModel = model('User', userSchema);
 export {UserModel};

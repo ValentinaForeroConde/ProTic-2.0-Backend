@@ -16,7 +16,15 @@ const tiposAutentificacion = gql`
             rol: Enum_Rol!
             password: String!
         ): Token!
+
+        login(
+            correo: String!
+            password: String!
+        ): Token
+
+        refreshToken:Token
     }
+
 `;
 
 
