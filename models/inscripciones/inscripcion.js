@@ -4,11 +4,11 @@ import { UserModel } from "../usuarios/usuario.js";
 
 const {Schema, model} = mongoose;
 const inscripcionSchema = new Schema({
-    estado:{
-        type:String,
-        enum:["ACEPTADO","RECHAZADO"],
-        required:true,
-    },
+    estado: {
+        type: String,
+        enum: ['ACEPTADO', 'RECHAZADO', 'PENDIENTE'],
+        default: 'PENDIENTE',
+      },
     fechaIngreso:{
         type:Date,
         required:true,
