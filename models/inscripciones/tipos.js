@@ -29,7 +29,7 @@ type Mutation{
         proyecto: String!
         fechaIngreso: Date
         fechaEgreso: Date
-        estado: Enum_EstadoInscripcion!
+        estado: Enum_EstadoInscripcion
         estudiante: String!
     ):Inscripcion
 

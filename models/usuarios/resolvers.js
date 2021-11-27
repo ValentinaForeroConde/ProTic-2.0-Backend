@@ -14,7 +14,14 @@ const resolversUsuarios = {
             // else{
             //     return null;
             // }
-            const usuarios = await UserModel.find();
+            const usuarios = await UserModel.find().populate('avancesCreados').populate([
+                {
+                    path:"inscripciones",
+                    populate:{
+                        path:"proyecto"
+                    },
+                },
+            ]);
             return usuarios;
         },
         Usuario: async (parent, args)=>{
