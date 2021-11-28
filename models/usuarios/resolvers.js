@@ -3,17 +3,26 @@ import { UserModel } from "./usuario.js";
 const resolversUsuarios = {
     Query:{
         Usuarios: async (parent, args, context)=>{
-            if (context.userData.rol === 'ADMINISTRADOR'){
-                const usuarios = await UserModel.find();
-                return usuarios;
-            }
+            // if (context.userData.rol === 'ADMINISTRADOR'){
+            //     const usuarios = await UserModel.find();
+            //     return usuarios;
+            // }
             // else if (context.userData.rol === 'LIDER'){
             //     const usuarios = await UserModel.find({rol:'ESTUDIANTE'});
             //     return usuarios;
             // }
-            else{
-                return null;
-            }
+            // else{
+            //     return null;
+            // }
+            const usuarios = await UserModel.find().populate('avancesCreados').populate([
+                {
+                    path:"inscripciones",
+                    populate:{
+                        path:"proyecto"
+                    },
+                },
+            ]);
+            return usuarios;
         },
         Usuario: async (parent, args)=>{
             const usuario = await UserModel.findOne({_id:args._id});
