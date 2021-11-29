@@ -18,7 +18,10 @@ const resolversUsuarios = {
                 {
                     path:"inscripciones",
                     populate:{
-                        path:"proyecto"
+                        path:"proyecto",
+                        // populate: {
+                        //     path:"lider"
+                        // }
                     },
                 },
             ]);
@@ -28,6 +31,12 @@ const resolversUsuarios = {
             const usuario = await UserModel.findOne({_id:args._id});
             return usuario;
         },
+
+        Estudiantes: async (parent, args)=>{
+            const estudiantes = await UserModel.find({rol:'ESTUDIANTE'});
+            return estudiantes;
+        },
+
     },
     Mutation:{
         crearUsuarios: async (parent, args)=>{

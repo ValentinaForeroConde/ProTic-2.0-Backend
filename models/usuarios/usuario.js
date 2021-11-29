@@ -26,7 +26,6 @@ const userSchema = new Schema({
     },
     rol:{
         type:String,
-        required:true,
         enum: ["ESTUDIANTE","LIDER","ADMINISTRADOR"],
     },
     estado:{
