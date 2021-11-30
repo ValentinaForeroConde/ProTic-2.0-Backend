@@ -16,6 +16,7 @@ type Inscripcion{
 type Query{
     Inscripciones:[Inscripcion]
     filtrarInscripcion(idProyecto: String!): [Inscripcion]
+    Inscripcion(_id: String!): Inscripcion
 }
 type Mutation{
     crearInscripcion(
@@ -26,11 +27,11 @@ type Mutation{
 
     editarInscripcion(
         _id:String!
-        proyecto: String!
+        proyecto: String
         fechaIngreso: Date
         fechaEgreso: Date
         estado: Enum_EstadoInscripcion
-        estudiante: String!
+        estudiante: String
     ):Inscripcion
 
     aprobarInscripcion( _id: String! ): Inscripcion
