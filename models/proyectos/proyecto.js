@@ -8,7 +8,7 @@ const projectSchema = new Schema({
         requiered: true,
     },
     presupuesto:{
-        type: Number,
+        type: String,
         requiered: true,
     },
     fechaInicio: {
