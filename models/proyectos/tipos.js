@@ -11,15 +11,7 @@ input crearObjetivo{
     descripcion: String!
     tipo: Enum_TipoObjetivo
 }
-input camposProyecto{
-    nombre: String
-    presupuesto: Float
-    fechaInicio: Date
-    fechaFin: Date
-    estado: Enum_EstadoProyecto
-    fase: Enum_FaseProyecto
-    lider: String
-}
+
 input camposObjetivo {
     descripcion: String!
     tipo: Enum_TipoObjetivo!
@@ -28,7 +20,7 @@ input camposObjetivo {
 type Proyecto{
     _id: ID!
     nombre: String!
-    presupuesto: Float!
+    presupuesto: String!
     fechaInicio: Date!
     fechaFin: Date!
     estado: Enum_EstadoProyecto!
@@ -46,7 +38,7 @@ type Query{
 type Mutation{
     crearProyecto(
         nombre: String!
-        presupuesto: Float!
+        presupuesto: String!
         fechaInicio: Date!
         fechaFin: Date!
         estado: Enum_EstadoProyecto
@@ -57,7 +49,13 @@ type Mutation{
 
     editarProyecto(
         _id:String!
-        campos:camposProyecto!
+        nombre: String
+        presupuesto: String
+        fechaInicio: Date
+        fechaFin: Date
+        estado: Enum_EstadoProyecto
+        fase: Enum_FaseProyecto
+        lider: String
     ): Proyecto
 
     eliminarProyecto( _id: String! ): Proyecto
