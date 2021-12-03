@@ -34,6 +34,7 @@ type Proyecto{
 type Query{
     Proyectos: [Proyecto]
     Proyecto(_id: String!): Proyecto
+    MisProyectos:[Proyecto]
 }
 type Mutation{
     crearProyecto(

@@ -5,12 +5,12 @@ const tiposInscripcion  = gql`
 scalar Date
 
 type Inscripcion{
-    _id: ID
-    proyecto: Proyecto!
+    _id: ID!
+    proyecto: Proyecto
     fechaIngreso: Date
     fechaEgreso: Date
-    estado: Enum_EstadoInscripcion!
-    estudiante: Usuario!
+    estado: Enum_EstadoInscripcion
+    estudiante: Usuario
 }
 
 type Query{

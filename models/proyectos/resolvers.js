@@ -2,14 +2,32 @@ import { ProjectModel } from "./proyecto.js"
 
 const resolversProyecto = {
     Query:{
-        Proyectos: async(parent, args)=>{
+        Proyectos: async(parent, args, context)=>{
             const proyectos = await ProjectModel.find().populate('lider').populate('avances').populate('inscripciones');
             return proyectos;
         },
         Proyecto: async(parent, args)=>{
-            const proyecto = await (await ProjectModel.findOne({_id:args._id})).populate('lider');
+            const proyecto =  await ProjectModel.findOne({_id:args._id}).populate('lider');
             return proyecto;
-        }
+        },
+        MisProyectos : async(parent, args, context)=>{
+            if (context.userData.rol === 'LIDER'){
+                    const misProyectos = await ProjectModel.find({_id:args._id}).populate('lider').populate('avances').populate('inscripciones');
+                    return misProyectos;
+                }
+                else if (context.userData.rol === 'ESTUDIANTE'){
+                    const misProyectos = await ProjectModel.find().populate('lider').populate('avances').populate([
+                        {
+                            path:"inscripciones",
+                            match: { _id: { $in: context.userData._id }}
+                        },
+                    ]);
+                    return misProyectos;
+                }
+                else{
+                    return null;
+                }
+        },
     },
     Mutation:{
         crearProyecto: async (parent, args)=>{
@@ -35,7 +53,6 @@ const resolversProyecto = {
                 presupuesto:args.presupuesto,
                 objetivos:args.objetivos,
                 lider:args.lider
-                
             },{new: true});
             return proyectoEditado;
         },
