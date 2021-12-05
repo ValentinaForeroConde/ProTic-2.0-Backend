@@ -38,6 +38,7 @@ const resolversProyecto = {
                 fechaInicio:args.fechaInicio,
                 fechaFin:args.fechaFin,
                 presupuesto:args.presupuesto,
+                objetivoGeneral:args.objetivoGeneral,
                 objetivos:args.objetivos,
                 lider:args.lider,
             });
@@ -59,42 +60,6 @@ const resolversProyecto = {
         eliminarProyecto: async(parent,args)=>{
             const proyectoEliminado = await ProjectModel.findByIdAndDelete({_id: args._id});
             return proyectoEliminado;
-        },
-
-        crearObjetivo: async(parent,args)=>{
-            const proyectoConObjetivo = await ProjectModel.findByIdAndUpdate(args.idProyecto,{
-                $addToSet:{
-                    objetivos: { ...args.campos },
-                },
-            },{new: true});
-            return proyectoConObjetivo;
-        },
-        editarObjetivo: async (parent, args) => {
-            const proyectoEditado = await ProjectModel.findByIdAndUpdate(
-              args.idProyecto,
-              {
-                $set: {
-                  [`objetivos.${args.indexObjetivo}.descripcion`]: args.campos.descripcion,
-                  [`objetivos.${args.indexObjetivo}.tipo`]: args.campos.tipo,
-                },
-              },
-              { new: true }
-            );
-            return proyectoEditado;
-        },
-        eliminarObjetivo: async (parent, args) => {
-            const proyectoObjetivo = await ProjectModel.findByIdAndUpdate(
-              { _id: args.idProyecto },
-              {
-                $pull: {
-                  objetivos: {
-                    _id: args.idObjetivo,
-                  },
-                },
-              },
-              { new: true }
-            );
-            return proyectoObjetivo;
         },
     }
 }

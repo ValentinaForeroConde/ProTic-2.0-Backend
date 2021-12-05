@@ -21,6 +21,7 @@ type Query{
     Usuarios: [Usuario]
     Usuario(_id: String!): Usuario
     Estudiantes:[Usuario]
+    Lideres:[Usuario]
 }
 type Mutation{
     crearUsuarios(

@@ -3,29 +3,21 @@ import { gql } from 'apollo-server-express';
 const tiposProyecto = gql`
 
 type Objetivo{
-    _id:ID!
     descripcion: String!
-    tipo: Enum_TipoObjetivo
 }
 input crearObjetivo{
     descripcion: String!
-    tipo: Enum_TipoObjetivo
 }
-
-input camposObjetivo {
-    descripcion: String!
-    tipo: Enum_TipoObjetivo!
-  }
-
 type Proyecto{
     _id: ID!
     nombre: String!
     presupuesto: String!
     fechaInicio: Date!
-    fechaFin: Date!
+    fechaFin: Date
     estado: Enum_EstadoProyecto!
     fase: Enum_FaseProyecto!
     lider: Usuario!
+    objetivoGeneral:String!
     objetivos:[Objetivo]!
     avances: [Avance]
     inscripciones: [Inscripcion]
@@ -41,11 +33,12 @@ type Mutation{
         nombre: String!
         presupuesto: String!
         fechaInicio: Date!
-        fechaFin: Date!
+        fechaFin: Date
         estado: Enum_EstadoProyecto
         fase: Enum_FaseProyecto
         lider: String!
-        objetivos: [crearObjetivo]
+        objetivoGeneral:String!
+        objetivos: [crearObjetivo]!
     ):Proyecto
 
     editarProyecto(
@@ -57,25 +50,12 @@ type Mutation{
         estado: Enum_EstadoProyecto
         fase: Enum_FaseProyecto
         lider: String
+        objetivoGeneral:String
+        objetivos: [crearObjetivo]
     ): Proyecto
 
     eliminarProyecto( _id: String! ): Proyecto
 
-    crearObjetivo(
-        idProyecto: String!,
-        campos:camposObjetivo!
-    ): Proyecto
-
-    editarObjetivo(
-        idProyecto: String!,
-        indexObjetivo: Int!,
-        campos: camposObjetivo!
-        ): Proyecto
-
-    eliminarObjetivo(
-        idProyecto: String!,
-        idObjetivo: String!
-        ): Proyecto
 }
 `;
 
