@@ -1,17 +1,11 @@
-import mongoose from 'mongoose'; 
+import mongoose from 'mongoose';
 import { ProjectModel } from "../proyectos/proyecto.js";
 import { UserModel } from "../usuarios/usuario.js";
 
-const {Schema, model} = mongoose;
+const {Schema, model, db} = mongoose;
 const inscripcionSchema = new Schema({
-    estado:{
-        type:String,
-        enum:["ACEPTADO","RECHAZADO"],
-        required:true,
-    },
     fechaIngreso:{
         type:Date,
-        required:true,
     },
     fechaEgreso:{
         type:Date,
@@ -26,7 +20,14 @@ const inscripcionSchema = new Schema({
         ref: UserModel,
         required: true,
     },
+    estado: {
+        type: String,
+        enum: ["ACEPTADO", "RECHAZADO", "PENDIENTE"],
+        default: "PENDIENTE",
+    },
+
 });
+
 
 const InscripcionModel = model('Inscripcione', inscripcionSchema);
 export{InscripcionModel}

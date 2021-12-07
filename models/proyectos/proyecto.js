@@ -8,7 +8,7 @@ const projectSchema = new Schema({
         requiered: true,
     },
     presupuesto:{
-        type: Number,
+        type: String,
         requiered: true,
     },
     fechaInicio: {
@@ -34,17 +34,15 @@ const projectSchema = new Schema({
         required:true,
         ref: UserModel,
     },
+    objetivoGeneral: {
+        type:String,
+        requiered: true,
+    },
     objetivos: [
         {
           descripcion: {
             type: String,
-            required: true,
-          },
-          tipo: {
-            type: String,
-            enum: ["GENERAL","ESPECIFICO"],
-            required: true,
-          },
+          }
         },
       ],
 });

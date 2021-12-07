@@ -20,7 +20,7 @@ enum Enum_FaseProyecto{
     INICIADO
     DESARROLLO
     TERMINADO
-    NULA
+    NULO
 }
 enum Enum_TipoObjetivo{
     GENERAL
@@ -30,6 +30,7 @@ enum Enum_TipoObjetivo{
 enum Enum_EstadoInscripcion{
     ACEPTADA
     RECHAZADA
+    PENDIENTE
 }
 
 `;

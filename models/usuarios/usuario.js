@@ -26,7 +26,6 @@ const userSchema = new Schema({
     },
     rol:{
         type:String,
-        required:true,
         enum: ["ESTUDIANTE","LIDER","ADMINISTRADOR"],
     },
     estado:{
@@ -36,10 +35,10 @@ const userSchema = new Schema({
     }
 });
 
-userSchema.virtual("avances",{
+userSchema.virtual("avancesCreados",{
     ref:'Avance',
     localField:"_id",
-    foreignField: "usuario",
+    foreignField: "creadoPor",
 },
 {
     toJSON: {virtuals:true},
@@ -48,12 +47,24 @@ userSchema.virtual("avances",{
 userSchema.virtual("inscripciones",{
     ref:'Inscripcione',
     localField:"_id",
-    foreignField: "usuario",
+    foreignField: "estudiante",
 },
 {
     toJSON: {virtuals:true},
     toObject: {virtuals:true}
 })
+
+userSchema.virtual('proyectosLiderados', {
+    ref: 'Proyecto',
+    localField: '_id',
+    foreignField: 'lider',
+},
+{
+    toJSON: {virtuals:true},
+    toObject: {virtuals:true}
+});
+
+
 
 const UserModel = model('User', userSchema);
 export {UserModel};

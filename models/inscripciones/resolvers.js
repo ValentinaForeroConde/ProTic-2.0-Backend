@@ -3,8 +3,8 @@ import { InscripcionModel } from "./inscripcion.js";
 const resolversInscripcion = {
     Query:{
         Inscripciones: async(parent, args)=>{
-            const avances = await InscripcionModel.find().populate('proyecto').populate('estudiante');
-            return avances;
+            const Inscripciones = await InscripcionModel.find().populate('proyecto').populate('estudiante');
+            return Inscripciones;
         },
         filtrarInscripcion: async (parents, args) => {
             const inscripcionFiltrada = await InscripcionModel.find({ proyecto: args.idProyecto })
@@ -12,13 +12,15 @@ const resolversInscripcion = {
               .populate('estudiante');
             return inscripcionFiltrada;
         },
+        Inscripcion: async(parent, args)=>{
+            const Inscripcion = await InscripcionModel.findOne({_id: args._id}).populate('proyecto').populate('estudiante');
+            return Inscripcion;
+        },
     },
     Mutation:{
         crearInscripcion: async (parent, args)=>{
             const inscripcionCreada = await InscripcionModel.create({
                 proyecto: args.proyecto,
-                fechaIngreso: args.fechaIngreso,
-                fechaEgreso: args.fechaEgreso,
                 estado: args.estado,
                 estudiante: args.estudiante,
             });

@@ -6,37 +6,36 @@ scalar Date
 
 type Inscripcion{
     _id: ID!
-    proyecto: Proyecto!
-    fechaIngreso: Date!
+    proyecto: Proyecto
+    fechaIngreso: Date
     fechaEgreso: Date
-    estado: Enum_EstadoInscripcion!
-    estudiante: Usuario!
+    estado: Enum_EstadoInscripcion
+    estudiante: Usuario
 }
 
 type Query{
     Inscripciones:[Inscripcion]
     filtrarInscripcion(idProyecto: String!): [Inscripcion]
+    Inscripcion(_id: String!): Inscripcion
 }
 type Mutation{
     crearInscripcion(
+        estado: Enum_EstadoInscripcion
         proyecto: String!
-        fechaIngreso: Date!
-        fechaEgreso: Date
-        estado: String!
         estudiante: String!
-    ):Inscripcion
+      ): Inscripcion
 
     editarInscripcion(
         _id:String!
-        proyecto: String!
-        fechaIngreso: Date!
+        proyecto: String
+        fechaIngreso: Date
         fechaEgreso: Date
-        estado: String!
-        estudiante: String!
+        estado: Enum_EstadoInscripcion
+        estudiante: String
     ):Inscripcion
-    
+
     aprobarInscripcion( _id: String! ): Inscripcion
-    
+
     eliminarInscripcion( _id: String! ): Inscripcion
 }
 `;

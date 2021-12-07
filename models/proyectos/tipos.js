@@ -3,37 +3,21 @@ import { gql } from 'apollo-server-express';
 const tiposProyecto = gql`
 
 type Objetivo{
-    _id:ID!
     descripcion: String!
-    tipo: Enum_TipoObjetivo
 }
 input crearObjetivo{
     descripcion: String!
-    tipo: Enum_TipoObjetivo
 }
-input camposProyecto{
-    nombre: String
-    presupuesto: Float
-    fechaInicio: Date
-    fechaFin: Date
-    estado: Enum_EstadoProyecto
-    fase: Enum_FaseProyecto
-    lider: String
-}
-input camposObjetivo {
-    descripcion: String!
-    tipo: Enum_TipoObjetivo!
-  }
-
 type Proyecto{
     _id: ID!
     nombre: String!
-    presupuesto: Float!
+    presupuesto: String!
     fechaInicio: Date!
-    fechaFin: Date!
+    fechaFin: Date
     estado: Enum_EstadoProyecto!
     fase: Enum_FaseProyecto!
     lider: Usuario!
+    objetivoGeneral:String!
     objetivos:[Objetivo]!
     avances: [Avance]
     inscripciones: [Inscripcion]
@@ -42,41 +26,36 @@ type Proyecto{
 type Query{
     Proyectos: [Proyecto]
     Proyecto(_id: String!): Proyecto
+    MisProyectos:[Proyecto]
 }
 type Mutation{
     crearProyecto(
         nombre: String!
-        presupuesto: Float!
+        presupuesto: String!
         fechaInicio: Date!
-        fechaFin: Date!
+        fechaFin: Date
         estado: Enum_EstadoProyecto
         fase: Enum_FaseProyecto
         lider: String!
-        objetivos: [crearObjetivo]
+        objetivoGeneral:String!
+        objetivos: [crearObjetivo]!
     ):Proyecto
 
     editarProyecto(
         _id:String!
-        campos:camposProyecto!
+        nombre: String
+        presupuesto: String
+        fechaInicio: Date
+        fechaFin: Date
+        estado: Enum_EstadoProyecto
+        fase: Enum_FaseProyecto
+        lider: String
+        objetivoGeneral:String
+        objetivos: [crearObjetivo]
     ): Proyecto
 
     eliminarProyecto( _id: String! ): Proyecto
 
-    crearObjetivo(
-        idProyecto: String!,
-        campos:camposObjetivo!
-    ): Proyecto
-
-    editarObjetivo(
-        idProyecto: String!,
-        indexObjetivo: Int!,
-        campos: camposObjetivo!
-        ): Proyecto
-
-    eliminarObjetivo(
-        idProyecto: String!,
-        idObjetivo: String!
-        ): Proyecto
 }
 `;
 
