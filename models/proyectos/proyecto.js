@@ -56,7 +56,7 @@ projectSchema.virtual("avances",{
     toObject: {virtuals:true}
 })
 projectSchema.virtual("inscripciones",{
-    ref:'Inscripcione',
+    ref:'Inscripcion',
     localField:"_id",
     foreignField: "proyecto",
 },

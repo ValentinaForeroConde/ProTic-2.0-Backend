@@ -16,6 +16,7 @@ type Inscripcion{
 type Query{
     Inscripciones:[Inscripcion]
     filtrarInscripcion(idProyecto: String!): [Inscripcion]
+    filtrarEstudiate(estudiante: String!): [Inscripcion]
     Inscripcion(_id: String!): Inscripcion
 }
 type Mutation{

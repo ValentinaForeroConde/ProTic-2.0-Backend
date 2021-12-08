@@ -1,4 +1,5 @@
 import { ProjectModel } from "./proyecto.js"
+import { InscripcionModel } from "../inscripciones/inscripcion.js"
 
 const resolversProyecto = {
     Query:{
@@ -12,21 +13,23 @@ const resolversProyecto = {
         },
         MisProyectos : async(parent, args, context)=>{
             if (context.userData.rol === 'LIDER'){
-                    const misProyectos = await ProjectModel.find({_id:args._id}).populate('lider').populate('avances').populate('inscripciones');
+                    const misProyectos = await ProjectModel.find({ lider: context.userData._id }).populate('avances').populate('inscripciones').populate('lider')
                     return misProyectos;
                 }
-                else if (context.userData.rol === 'ESTUDIANTE'){
-                    const misProyectos = await ProjectModel.find().populate('lider').populate('avances').populate([
-                        {
-                            path:"inscripciones",
-                            match: { _id: { $in: context.userData._id }}
-                        },
-                    ]);
-                    return misProyectos;
+            else if (context.userData.rol === 'ESTUDIANTE'){
+                let filtro = {};
+                const inscripciones = await InscripcionModel.find({ estudiante:context.userData._id });
+                const inscripList = inscripciones.map((p) => p.proyecto.toString());
+                filtro = {
+                    _id: {$in: inscripList},
+                    };
+                const misProyectos = await ProjectModel.find({ ...filtro }).populate('inscripciones');
+                return misProyectos;
+
                 }
-                else{
-                    return null;
-                }
+            else{
+                return null;
+            }
         },
     },
     Mutation:{

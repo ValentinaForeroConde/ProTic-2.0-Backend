@@ -32,7 +32,7 @@ type Mutation{
     crearProyecto(
         nombre: String!
         presupuesto: String!
-        fechaInicio: Date!
+        fechaInicio: Date
         fechaFin: Date
         estado: Enum_EstadoProyecto
         fase: Enum_FaseProyecto

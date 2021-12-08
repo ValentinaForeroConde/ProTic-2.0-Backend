@@ -6,36 +6,35 @@ scalar Date
 
 type Avance{
     _id: ID!
-    proyecto: Proyecto!
-    fecha: Date!
-    descripcion: String!
+    proyecto: Proyecto
+    fecha: Date
+    descripcion: String
     observaciones: [String]
-    creadoPor: Usuario!
+    creadoPor: Usuario
 }
 
 type Query{
     Avances:[Avance]
-    filtrarAvance(idProyecto: String!): [Avance]
+    filtrarAvance(_id: String!): [Avance]
+    Avance(_id: String!): Avance
 }
 type Mutation{
-    
     crearAvance(
         proyecto: String!
-        fecha: Date!
+        fecha: Date
         descripcion: String!
-        observaciones: [String]
         creadoPor: String!
     ):Avance
 
     editarAvance(
         _id:String!
-        proyecto: String!
-        fecha: Date!
-        descripcion: String!
+        proyecto: String
+        fecha: Date
+        descripcion: String
         observaciones: [String]
-        creadoPor: String!
+        creadoPor: String
     ):Avance
-    
+
     eliminarAvance( _id: String! ): Avance
 }
 `;

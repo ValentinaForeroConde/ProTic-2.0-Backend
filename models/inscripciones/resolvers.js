@@ -12,6 +12,12 @@ const resolversInscripcion = {
               .populate('estudiante');
             return inscripcionFiltrada;
         },
+        filtrarEstudiate: async (parents, args) => {
+            const inscripcionEstudiante = await InscripcionModel.find({ estudiante: args.estudiante })
+              .populate('proyecto')
+              .populate('estudiante');
+            return inscripcionEstudiante;
+        },
         Inscripcion: async(parent, args)=>{
             const Inscripcion = await InscripcionModel.findOne({_id: args._id}).populate('proyecto').populate('estudiante');
             return Inscripcion;
