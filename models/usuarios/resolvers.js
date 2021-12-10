@@ -16,18 +16,6 @@ const resolversUsuarios = {
             else{
                 return null;
             }
-            // const usuarios = await UserModel.find().populate('avancesCreados').populate([
-            //     {
-            //         path:"inscripciones",
-            //         populate:{
-            //             path:"proyecto",
-            //             // populate: {
-            //             //     path:"lider"
-            //             // }
-            //         },
-            //     },
-            // ]);
-            return usuarios;
         },
         Usuario: async (parent, args)=>{
             const usuario = await UserModel.findOne({_id:args._id});

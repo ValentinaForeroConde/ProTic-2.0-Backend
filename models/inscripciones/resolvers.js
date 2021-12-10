@@ -33,14 +33,23 @@ const resolversInscripcion = {
             return inscripcionCreada
         },
         editarInscripcion: async(parent, args)=>{
-            const inscripcionEditada = await InscripcionModel.findByIdAndUpdate(args._id,{
-                proyecto: args.proyecto,
-                fechaIngreso: args.fechaIngreso,
-                fechaEgreso: args.fechaEgreso,
-                estado: args.estado,
-                estudiante: args.estudiante,
-            },{new: true});
-            return inscripcionEditada;
+            if(args.estado === 'ACEPTADA'){
+                const inscripcionEditada = await InscripcionModel.findByIdAndUpdate(args._id,{
+                    proyecto: args.proyecto,
+                    fechaIngreso: Date.now(),
+                    fechaEgreso: args.fechaEgreso,
+                    estado: args.estado,
+                    estudiante: args.estudiante,
+                },{new: true});
+                return inscripcionEditada;
+            }else{
+                const inscripcionEditada = await InscripcionModel.findByIdAndUpdate(args._id,{
+                    proyecto: args.proyecto,
+                    estado: args.estado,
+                    estudiante: args.estudiante,
+                },{new: true});
+                return inscripcionEditada;
+            }
         },
         aprobarInscripcion: async(parent,args)=>{
             const inscripcionAprobada = await InscripcionModel.findByIdAndUpdate(args._id,{
