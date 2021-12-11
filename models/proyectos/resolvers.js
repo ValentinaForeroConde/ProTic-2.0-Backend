@@ -18,7 +18,8 @@ const resolversProyecto = {
                 }
             else if (context.userData.rol === 'ESTUDIANTE'){
                 let filtro = {};
-                const inscripciones = await InscripcionModel.find({ estudiante:context.userData._id });
+                const inscripciones = await InscripcionModel.find({ estudiante:context.userData._id, fechaEgreso:null });
+                console.log(inscripciones);
                 const inscripList = inscripciones.map((p) => p.proyecto.toString());
                 filtro = {
                     _id: {$in: inscripList},

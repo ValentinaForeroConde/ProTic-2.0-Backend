@@ -52,10 +52,13 @@ const resolversInscripcion = {
             }
         },
         fechaEgreso: async (parent, args)=>{
-            // const fechaDeEgreso = await InscripcionModel.find({proyecto: args.idProyecto },{
-            const fechaDeEgreso = await InscripcionModel.updateMany({proyecto: args.idProyecto },{
+            // const Inscripciones = await InscripcionModel.find({estado:"ACEPTADA"});
+            // console.log(Inscripciones);
+            // console.log("MODEL"+InscripcionModel);
+            const fechaDeEgreso = await InscripcionModel.updateMany({proyecto: args.idProyecto, estado:"ACEPTADA", fechaEgreso:null },{
                 fechaEgreso: Date.now(),
             },{new: true});
+            console.log(fechaDeEgreso);
             const inscripcionFiltrada = await InscripcionModel.find({ proyecto: args.idProyecto })
             return inscripcionFiltrada;
         },
