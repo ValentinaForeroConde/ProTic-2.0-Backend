@@ -45,7 +45,7 @@ userSchema.virtual("avancesCreados",{
     toObject: {virtuals:true}
 })
 userSchema.virtual("inscripciones",{
-    ref:'Inscripcione',
+    ref:'Inscripcion',
     localField:"_id",
     foreignField: "estudiante",
 },

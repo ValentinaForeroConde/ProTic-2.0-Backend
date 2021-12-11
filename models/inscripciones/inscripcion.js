@@ -22,12 +22,12 @@ const inscripcionSchema = new Schema({
     },
     estado: {
         type: String,
-        enum: ["ACEPTADO", "RECHAZADO", "PENDIENTE"],
+        enum: ["ACEPTADA", "RECHAZADA", "PENDIENTE"],
         default: "PENDIENTE",
     },
 
 });
 
 
-const InscripcionModel = model('Inscripcione', inscripcionSchema);
+const InscripcionModel = model('Inscripcion', inscripcionSchema);
 export{InscripcionModel}
