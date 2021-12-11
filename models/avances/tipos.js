@@ -9,7 +9,7 @@ type Avance{
     proyecto: Proyecto
     fecha: Date
     descripcion: String
-    observaciones: [String]
+    observaciones: String
     creadoPor: Usuario
 }
 
@@ -31,7 +31,7 @@ type Mutation{
         proyecto: String
         fecha: Date
         descripcion: String
-        observaciones: [String]
+        observaciones:String
         creadoPor: String
     ):Avance
 

@@ -51,6 +51,14 @@ const resolversInscripcion = {
                 return inscripcionEditada;
             }
         },
+        fechaEgreso: async (parent, args)=>{
+            // const fechaDeEgreso = await InscripcionModel.find({proyecto: args.idProyecto },{
+            const fechaDeEgreso = await InscripcionModel.updateMany({proyecto: args.idProyecto },{
+                fechaEgreso: Date.now(),
+            },{new: true});
+            const inscripcionFiltrada = await InscripcionModel.find({ proyecto: args.idProyecto })
+            return inscripcionFiltrada;
+        },
         aprobarInscripcion: async(parent,args)=>{
             const inscripcionAprobada = await InscripcionModel.findByIdAndUpdate(args._id,{
                 estado: "ACEPTADO",
