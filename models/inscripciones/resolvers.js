@@ -25,12 +25,16 @@ const resolversInscripcion = {
     },
     Mutation:{
         crearInscripcion: async (parent, args)=>{
-            const inscripcionCreada = await InscripcionModel.create({
-                proyecto: args.proyecto,
-                estado: args.estado,
-                estudiante: args.estudiante,
-            });
-            return inscripcionCreada
+            if (await InscripcionModel.find({ estudiante:args.estudiante, proyecto:args.proyecto, fechaEgreso:null })){
+                return null;
+            }else{
+                const inscripcionCreada = await InscripcionModel.create({
+                    proyecto: args.proyecto,
+                    estado: args.estado,
+                    estudiante: args.estudiante,
+                });
+                return inscripcionCreada
+            }
         },
         editarInscripcion: async(parent, args)=>{
             if(args.estado === 'ACEPTADA'){
