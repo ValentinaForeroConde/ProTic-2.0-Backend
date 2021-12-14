@@ -35,6 +35,11 @@ type Mutation{
         estudiante: String
     ):Inscripcion
 
+    fechaEgreso(
+        idProyecto: String!
+        fechaEgreso:Date
+    ):[Inscripcion]
+
     aprobarInscripcion( _id: String! ): Inscripcion
 
     eliminarInscripcion( _id: String! ): Inscripcion
