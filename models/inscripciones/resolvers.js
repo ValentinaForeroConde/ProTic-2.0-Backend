@@ -46,7 +46,7 @@ const resolversInscripcion = {
       const filtrofecha = await InscripcionModel.find({
         estudiante: args.estudiante,
         proyecto: args.proyecto,
-        estado: { $ne: null },
+        fechaEgreso: { $ne: null },
       });
 
       if (filtrarInscripcion.length || filtrarInscripcio.length) {

@@ -17,6 +17,7 @@ type Query{
     Avances:[Avance]
     filtrarAvance(_id: String!): [Avance]
     Avance(_id: String!): Avance
+    FiltroEstudiante (_id: String!):[Avance]
 }
 type Mutation{
     crearAvance(
