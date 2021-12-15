@@ -42,13 +42,13 @@ const resolversInscripcion = {
         estudiante: args.estudiante,
         proyecto: args.proyecto,
         estado: "ACEPTADA",
+        fechaEgreso: null,
       });
       const filtrofecha = await InscripcionModel.find({
         estudiante: args.estudiante,
         proyecto: args.proyecto,
         fechaEgreso: { $ne: null },
       });
-
       if (filtrarInscripcion.length || filtrarInscripcio.length) {
         return null;
       } else if (filtrofecha.length) {
