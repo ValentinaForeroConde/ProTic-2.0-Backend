@@ -47,7 +47,7 @@ const resolversAutetificacion = {
                 };
             }
             return{
-                token: 'hola soy el token'
+                token: null
             }
         },
         refreshToken: async (parent, args, context)=>{
