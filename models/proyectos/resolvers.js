@@ -56,6 +56,7 @@ const resolversProyecto = {
                 fechaInicio:args.fechaInicio,
                 fechaFin:args.fechaFin,
                 presupuesto:args.presupuesto,
+                objetivoGeneral:args.objetivoGeneral,
                 objetivos:args.objetivos,
                 lider:args.lider
             },{new: true});
